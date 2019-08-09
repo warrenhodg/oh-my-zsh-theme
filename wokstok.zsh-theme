@@ -237,7 +237,13 @@ alias mce="mealie-crypt encrypt"
 alias mcga="mealie-crypt groups add -g"
 alias mcvg="mealie-crypt values get"
 
-export PATH=${GOPATH}/bin:${PATH}
+alias pstart="ssh -D localhost:1080 -f -N ansible"
+alias pstop="ps -ef | grep '[s]sh -D localhost:1080' | awk '{print \$2}' | xargs kill -9"
+alias prestart="pstop; pstart"
+
+alias wproxy="export http_proxy=http://proxy.wal-mart.com:9080 && export https_proxy=http://proxy.wal-mart.com:9080"
+alias nwproxy="unset http_proxy && unset https_proxy"
+export PATH=$(go env GOPATH)/bin:${PATH}
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export ANDROID_HOME=${HOME}/Library/Android/sdk
 
@@ -245,3 +251,4 @@ ssh-add -K ~/.ssh/id_rsa
 
 PROMPT='%{%f%b%k%}$(build_prompt) 
 '
+[[ $TERM != "screen" ]] && exec tmux
