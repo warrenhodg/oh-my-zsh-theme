@@ -226,6 +226,10 @@ build_prompt() {
   prompt_end
 }
 
+ct() {
+  openssl x509 -text -in $1 |grep -A2 Validity
+}
+
 eval "$(mealie-crypt --completion-script-zsh)"
 
 alias vim=nvim
