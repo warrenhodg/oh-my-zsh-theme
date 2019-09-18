@@ -254,6 +254,12 @@ export ANDROID_HOME=${HOME}/Library/Android/sdk
 
 ssh-add -K ~/.ssh/id_rsa
 
+# Use vim, not emacs on command-line
+bindkey -v
+# Make escape take 1/100, not 40/100 seconds
+export KEYTIMEOUT=1
+
+
 PROMPT='%{%f%b%k%}$(build_prompt) 
 '
 [[ $TERM != "screen" ]] && exec tmux
