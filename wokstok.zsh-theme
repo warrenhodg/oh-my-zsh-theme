@@ -247,7 +247,8 @@ alias prestart="pstop; pstart"
 
 alias wproxy="export http_proxy=http://proxy.wal-mart.com:9080 && export https_proxy=http://proxy.wal-mart.com:9080"
 alias nwproxy="unset http_proxy && unset https_proxy"
-export PATH=$(go env GOPATH)/bin:${PATH}
+export GOPATH=$(go env GOPATH)
+export PATH=${PATH}:$GOPATH/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export ANDROID_HOME=${HOME}/Library/Android/sdk
 
