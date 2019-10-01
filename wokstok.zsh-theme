@@ -253,6 +253,9 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 export ANDROID_HOME=${HOME}/Library/Android/sdk
 
+devd() {
+  cd ~/go/src/tb/dev-dockerfiles
+}
 dcu() {
   docker-compose $(ls |grep -e '^docker-compose\..*yml' |sed 's/^/-f /g') up -d $@
 }
