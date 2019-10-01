@@ -250,14 +250,31 @@ alias nwproxy="unset http_proxy && unset https_proxy"
 export GOPATH=$(go env GOPATH)
 export PATH=${PATH}:$GOPATH/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 export ANDROID_HOME=${HOME}/Library/Android/sdk
+
+dcu() {
+  docker-compose -f docker-compose.yml -f docker-compose.tools.yml -f docker-compose.override.yml up -d $@
+}
+de() {
+  docker exec -ti $@
+}
+dl() {
+  docker logs -t 100 $@
+}
+dlf() {
+  docker logs -t 100 --follow $@
+}
+dr() {
+  docker-compose -f docker-compose.yml -f docker-compose.tools.yml -f docker-compose.override.yml run --rm $@
+}
 
 ssh-add -K ~/.ssh/id_rsa
 
 # Use vim, not emacs on command-line
-bindkey -v
+bindkey -e
 # Make escape take 1/100, not 40/100 seconds
-export KEYTIMEOUT=1
+# export KEYTIMEOUT=1
 
 
 PROMPT='%{%f%b%k%}$(build_prompt) 
