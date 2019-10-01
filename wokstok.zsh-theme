@@ -254,7 +254,7 @@ export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/b
 export ANDROID_HOME=${HOME}/Library/Android/sdk
 
 dcu() {
-  docker-compose -f docker-compose.yml -f docker-compose.tools.yml -f docker-compose.override.yml up -d $@
+  docker-compose $(ls |grep -e '^docker-compose\..*yml' |sed 's/^/-f /g') up -d $@
 }
 de() {
   docker exec -ti $@
@@ -266,7 +266,7 @@ dlf() {
   docker logs -t 100 --follow $@
 }
 dr() {
-  docker-compose -f docker-compose.yml -f docker-compose.tools.yml -f docker-compose.override.yml run --rm $@
+  docker-compose $(ls |grep -e '^docker-compose\..*yml' |sed 's/^/-f /g') run --rm $@
 }
 
 ssh-add -K ~/.ssh/id_rsa
