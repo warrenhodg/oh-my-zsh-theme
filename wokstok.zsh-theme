@@ -245,13 +245,17 @@ alias pstart="ssh -D localhost:1080 -f -N ansible"
 alias pstop="ps -ef | grep '[s]sh -D localhost:1080' | awk '{print \$2}' | xargs kill -9"
 alias prestart="pstop; pstart"
 
+alias v="vagrant"
 alias wproxy="export http_proxy=http://proxy.wal-mart.com:9080 && export https_proxy=http://proxy.wal-mart.com:9080"
 alias nwproxy="unset http_proxy && unset https_proxy"
 export GOPATH=$(go env GOPATH)
+export GOPRIVATE=gecgithub01.walmart.com
 export PATH=${PATH}:$GOPATH/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 export ANDROID_HOME=${HOME}/Library/Android/sdk
+export no_proxy=localhost,127.0.0.1
+eval $(/usr/libexec/path_helper -s)                                                                               
 
 devd() {
   cd ~/go/src/tb/dev-dockerfiles
@@ -263,15 +267,21 @@ de() {
   docker exec -ti $@
 }
 dl() {
-  docker logs -t 100 $@
+  docker logs --tail 100 $@
 }
 dlf() {
-  docker logs -t 100 --follow $@
+  docker logs --tail 100 --follow $@
 }
 dr() {
   docker-compose $(ls |grep -e '^docker-compose\..*yml' |sed 's/^/-f /g') run --rm $@
 }
 
+alias k="kubectl"
+alias kga="kubectl get all"
+alias kd="kubectl describe"
+alias kD="kubectl delete"
+
+nwproxy
 ssh-add -K ~/.ssh/id_rsa
 
 # Use vim, not emacs on command-line
@@ -279,6 +289,7 @@ bindkey -e
 # Make escape take 1/100, not 40/100 seconds
 # export KEYTIMEOUT=1
 
+set -o vi
 
 PROMPT='%{%f%b%k%}$(build_prompt) 
 '
