@@ -284,12 +284,10 @@ alias kD="kubectl delete"
 nwproxy
 ssh-add -K ~/.ssh/id_rsa
 
-# Use vim, not emacs on command-line
+# Use emacs on command-line
 bindkey -e
 # Make escape take 1/100, not 40/100 seconds
 # export KEYTIMEOUT=1
-
-set -o vi
 
 PROMPT='%{%f%b%k%}$(build_prompt) 
 '
