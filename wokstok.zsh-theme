@@ -230,26 +230,11 @@ ct() {
   openssl x509 -text -in $1 |grep -A2 Validity
 }
 
-eval "$(mealie-crypt --completion-script-zsh)"
-
 alias vim=nvim
 alias gpr='hub pull-request'
 alias dd=dcfldd
-alias mc="mealie-crypt"
-alias mcd="mealie-crypt decrypt"
-alias mce="mealie-crypt encrypt"
-alias mcga="mealie-crypt groups add -g"
-alias mcvg="mealie-crypt values get"
 
-alias pstart="ssh -D localhost:1080 -f -N ansible"
-alias pstop="ps -ef | grep '[s]sh -D localhost:1080' | awk '{print \$2}' | xargs kill -9"
-alias prestart="pstop; pstart"
-
-alias v="vagrant"
-alias wproxy="export http_proxy=http://proxy.wal-mart.com:9080 && export https_proxy=http://proxy.wal-mart.com:9080"
-alias nwproxy="unset http_proxy && unset https_proxy"
 export GOPATH=$(go env GOPATH)
-export GOPRIVATE=gecgithub01.walmart.com
 export PATH=${PATH}:$GOPATH/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
@@ -277,12 +262,12 @@ dr() {
 }
 
 alias k="kubectl"
+alias kg="kubectl get"
 alias kga="kubectl get all"
 alias kd="kubectl describe"
 alias kD="kubectl delete"
 
-nwproxy
-ssh-add -K ~/.ssh/id_rsa
+ssh-add /home/warren/.ssh/id_ed25519
 
 # Use emacs on command-line
 bindkey -e
