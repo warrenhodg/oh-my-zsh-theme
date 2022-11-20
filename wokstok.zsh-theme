@@ -240,7 +240,6 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 export ANDROID_HOME=${HOME}/Library/Android/sdk
 export no_proxy=localhost,127.0.0.1
-eval $(/usr/libexec/path_helper -s)                                                                               
 
 devd() {
   cd ~/go/src/tb/dev-dockerfiles
@@ -267,7 +266,8 @@ alias kga="kubectl get all"
 alias kd="kubectl describe"
 alias kD="kubectl delete"
 
-ssh-add /home/warren/.ssh/id_ed25519
+pgrep -x "ssh-agent" > /dev/null || eval $(ssh-agent)
+ssh-add -L > /dev/null || ssh-add /home/warren/.ssh/id_ed25519
 
 # Use emacs on command-line
 bindkey -e
